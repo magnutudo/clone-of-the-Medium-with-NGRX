@@ -17,8 +17,11 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     AuthModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Количество экшнов, которые мы хотим показывать в нашем DevTools
-      logOnly: !isDevMode(), //
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      autoPause: true,
+      trace: false,
+      traceLimit: 75,
     }),
   ],
   providers: [],

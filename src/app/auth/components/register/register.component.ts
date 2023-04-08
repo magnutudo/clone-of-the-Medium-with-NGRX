@@ -11,17 +11,18 @@ import {registerAction} from "../../store/actions/register.action";
 export class RegisterComponent implements OnInit {
   form: FormGroup
 
-  constructor(private fb: FormBuilder, private store:Store) {
+  constructor(private fb: FormBuilder, private store: Store) {
   }
 
   ngOnInit() {
     this.initializeForm()
   }
-  initializeForm():void{
+
+  initializeForm(): void {
     this.form = this.fb.group({
-      username:["",Validators.required],
-      email:["",Validators.email],
-      password:["",Validators.minLength(8)]
+      username: ["", Validators.required],
+      email: ["", Validators.email],
+      password: ["", Validators.minLength(8)]
     })
   }
 
