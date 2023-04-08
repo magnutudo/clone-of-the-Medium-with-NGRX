@@ -5,6 +5,8 @@ import {registerAction} from "../../store/actions/register.action";
 import {Observable} from "rxjs";
 import {isSubmittingSelector} from "../../store/selectors";
 import {AppStateInterface} from "../../../shared/types/appState.interface";
+import {AuthService} from "../../services/auth.service";
+import {CurrentUserInterface} from "../../../shared/types/currentUser.interface";
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,7 @@ export class RegisterComponent implements OnInit {
   isSubmitting$: Observable<boolean>
 
 
-  constructor(private fb: FormBuilder, private store: Store<AppStateInterface>) {
+  constructor(private fb: FormBuilder, private store: Store<AppStateInterface>,private authService:AuthService) {
   }
 
   ngOnInit() {
@@ -38,11 +40,16 @@ export class RegisterComponent implements OnInit {
     }
     console.log(this.form.value)
     this.store.dispatch(registerAction(this.form.value))
+    this.authService.register(this.form.value).subscribe((currentUser:CurrentUserInterface) =>{
+      console.log("current user", currentUser)
+    })
     this.form.reset()
   }
 
   initializeValues() {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
+
     console.log("isSubmitting", this.isSubmitting$)
+
   }
 }
