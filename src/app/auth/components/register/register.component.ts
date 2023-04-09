@@ -7,6 +7,7 @@ import {isSubmittingSelector} from "../../store/selectors";
 import {AppStateInterface} from "../../../shared/types/appState.interface";
 import {AuthService} from "../../services/auth.service";
 import {CurrentUserInterface} from "../../../shared/types/currentUser.interface";
+import {RegisterRequestInterface} from "../../types/registerRequest.interface";
 
 @Component({
   selector: 'app-register',
@@ -39,10 +40,11 @@ export class RegisterComponent implements OnInit {
       return
     }
     console.log(this.form.value)
-    this.store.dispatch(registerAction(this.form.value))
-    this.authService.register(this.form.value).subscribe((currentUser:CurrentUserInterface) =>{
-      console.log("current user", currentUser)
-    })
+    const request:RegisterRequestInterface={
+      user:this.form.value
+    }
+    this.store.dispatch(registerAction({request}))
+
     this.form.reset()
   }
 
