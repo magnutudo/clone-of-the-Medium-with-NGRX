@@ -1,5 +1,4 @@
 <div class="auth-page">
-  ===={{isSubmitting$ |async}}=====
   <div class="container page">
     <div class="row">
       <div class="col-md-6 offset-md-3 col-xs-12">
@@ -9,7 +8,9 @@
             Have an account?
           </a>
         </p>
-        Backend error are here!
+        <mc-backend-error-messages *ngIf="backendErrors$ | async"
+        [backendErrors] = "backendErrors$ | async"
+        ></mc-backend-error-messages>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <fieldset>
             <fieldset class="form-group">
