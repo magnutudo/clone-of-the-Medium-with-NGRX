@@ -5,10 +5,13 @@ import {registerAction} from "../../store/actions/register.action";
 import {Observable} from "rxjs";
 import {isSubmittingSelector, validationErrorsSelector} from "../../store/selectors";
 import {AppStateInterface} from "../../../shared/types/appState.interface";
-import {AuthService} from "../../services/auth.service";
-import {CurrentUserInterface} from "../../../shared/types/currentUser.interface";
-import {RegisterRequestInterface} from "../../types/registerRequest.interface";
+
+
+
 import {BackendErrorsInterface} from "../../../shared/types/backendErrors.interface";
+
+
+import {RegisterRequestInterface} from "../../types/registerRequest.interface";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +23,7 @@ export class RegisterComponent implements OnInit {
   isSubmitting$: Observable<boolean>
   backendErrors$: Observable<BackendErrorsInterface | null>
 
-  constructor(private fb: FormBuilder, private store: Store<AppStateInterface>, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private store: Store<AppStateInterface>) {
   }
 
   ngOnInit() {
@@ -41,8 +44,12 @@ export class RegisterComponent implements OnInit {
       return
     }
     console.log(this.form.value)
-    const request: RegisterRequestInterface = {
-      user: this.form.value
+
+
+
+    const request:RegisterRequestInterface={
+      user:this.form.value
+
     }
     this.store.dispatch(registerAction({request}))
 
