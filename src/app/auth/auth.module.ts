@@ -10,6 +10,7 @@ import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {EffectsModule} from "@ngrx/effects";
 import {RegisterEffect} from "./store/effects/register.effect";
+import {BackendErrorMessagesModule} from "../shared/modules/backendErrorMessages/backendErrorMessages.module";
 
 
 
@@ -22,7 +23,11 @@ const routes: Routes = [
 ]
 
 @NgModule({
+
+  imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect]), BackendErrorMessagesModule],
+=======
   imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect])],
+
   declarations: [
     RegisterComponent
   ],
