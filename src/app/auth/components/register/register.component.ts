@@ -47,8 +47,7 @@ export class RegisterComponent implements OnInit {
     }
     console.log(this.form.value)
 
-    const request: RegisterRequestInterface = {
-      user: this.form.value
+    
 
     const request:RegisterRequestInterface={
       user:this.form.value
