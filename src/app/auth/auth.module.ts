@@ -23,7 +23,11 @@ const routes: Routes = [
 ]
 
 @NgModule({
+
   imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect]), BackendErrorMessagesModule],
+=======
+  imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect])],
+
   declarations: [
     RegisterComponent
   ],
