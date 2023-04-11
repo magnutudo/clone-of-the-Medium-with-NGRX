@@ -7,29 +7,30 @@ import {CurrentUserInterface} from "../../../shared/types/currentUser.interface"
 import {HttpErrorResponse} from "@angular/common/http";
 import {PersistanceService} from "../../../shared/services/persistance.service";
 import {Router} from "@angular/router";
+import {loginAction, loginFailureAction, loginSuccessAction} from "../actions/login.action";
 
 @Injectable()
-export class RegisterEffect {
+export class LoginEffect {
   constructor(private actions$: Actions, private router: Router, private authService: AuthService, private persistanceService: PersistanceService) {
   }
 
-  register$ = createEffect(() => this.actions$.pipe(
-      ofType(registerAction),
+  login$ = createEffect(() => this.actions$.pipe(
+      ofType(loginAction),
       switchMap(({request}) => {
-        return this.authService.register(request).pipe(
+        return this.authService.login(request).pipe(
           map((currentUser: CurrentUserInterface) => {
             this.persistanceService.set("access-token", currentUser.token)
-            return registerSuccessAction({currentUser})
+            return loginSuccessAction({currentUser})
           }),
           catchError((errorResp: HttpErrorResponse) => {
-            return of(registerFailureAction({errors: errorResp.error.errors}))
+            return of(loginFailureAction({errors: errorResp.error.errors}))
           })
         )
       })
     )
   )
   redirectAfterSubmit$ = createEffect(() => this.actions$.pipe(
-    ofType(registerSuccessAction),
+    ofType(loginSuccessAction),
     tap(() => {
       this.router.navigate(["/"])
     })
