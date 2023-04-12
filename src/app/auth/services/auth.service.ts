@@ -11,15 +11,23 @@ import {LoginRequestInterface} from "../types/loginRequest.interface";
 export class AuthService {
   constructor(private http: HttpClient) {
   }
-  getUser(response:AuhResponseInterface):CurrentUserInterface{
+
+  getUser(response: AuhResponseInterface): CurrentUserInterface {
     return response.user
   }
+
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
     const url = environment.apiUrl + "/users"
     return this.http.post<AuhResponseInterface>(url, data).pipe(map(this.getUser))
   }
-  login(data:LoginRequestInterface):Observable<CurrentUserInterface>{
+
+  login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
     const url = environment.apiUrl + "/users/login"
-    return this.http.post<AuhResponseInterface>(url,data).pipe(map(this.getUser))
+    return this.http.post<AuhResponseInterface>(url, data).pipe(map(this.getUser))
+  }
+
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    const url = environment.apiUrl + "/user"
+    return this.http.get(url).pipe(map(this.getUser))
   }
 }

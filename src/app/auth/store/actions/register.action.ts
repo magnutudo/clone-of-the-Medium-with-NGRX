@@ -4,7 +4,7 @@ import {ActionTypes} from "../actionTypes";
 import {RegisterRequestInterface} from "../../types/registerRequest.interface";
 import {CurrentUserInterface} from "../../../shared/types/currentUser.interface";
 import {BackendErrorsInterface} from "../../../shared/types/backendErrors.interface";
-import {LoginRequestInterface} from "../../types/loginRequest.interface";
+
 
 
 export const registerAction = createAction(

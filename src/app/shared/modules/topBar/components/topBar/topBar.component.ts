@@ -22,6 +22,4 @@ export class TopBarComponent implements OnInit{
     this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
   }
-
-
 }
