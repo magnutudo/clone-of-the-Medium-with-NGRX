@@ -11,7 +11,7 @@ import {currentUserSelector, isAnonymousSelector, isLoggedInSelector} from "../.
   styleUrls: ['./topBar.component.scss']
 })
 export class TopBarComponent implements OnInit{
-  constructor(private store: Store<AppStateInterface>) {
+  constructor(public store: Store<AppStateInterface>) {
   }
   isLoggedIn$:Observable<boolean>
   isAnonymous$:Observable<boolean>

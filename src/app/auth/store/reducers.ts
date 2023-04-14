@@ -61,8 +61,8 @@ const authReducer = createReducer(
   on(getCurrentUserAction,
     (state): AuthStateInterface => ({
       ...state,
-      isLoading:true
-
+      isLoading:true,
+      isLoggedIn:false
     })
   ),
   on(getCurrentUserSuccessAction,
