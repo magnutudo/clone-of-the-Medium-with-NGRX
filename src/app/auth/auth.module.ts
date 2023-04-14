@@ -34,7 +34,9 @@ const routes: Routes = [
 
 @NgModule({
 
-  imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect, LoginEffect,GetCurrentUserEffect]), BackendErrorMessagesModule],
+
+  imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect, LoginEffect,GetCurrentUserEffect]), BackendErrorMessagesModule]
+
 
   declarations: [
     RegisterComponent,LoginComponent
