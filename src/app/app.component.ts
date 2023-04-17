@@ -8,10 +8,11 @@ import {getCurrentUserAction} from "./auth/store/actions/getCurrentsUser.action"
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit{
-  constructor(private store:Store<AppStateInterface>) {
+export class AppComponent implements OnInit {
+  constructor(private store: Store<AppStateInterface>) {
   }
-  ngOnInit():void {
+
+  ngOnInit(): void {
     this.store.dispatch(getCurrentUserAction())
   }
 
