@@ -20,8 +20,6 @@ export class PaginationComponent implements OnInit {
   ngOnInit(): void {
     this.pagesCount = Math.ceil(this.totalProps / this.limitProps)
     this.pages = Array.from({length: 20}, (_, i) => i + 1);
-    console.log(this.pages)
-
-
+    console.log(this.currentPageProps)
   }
 }

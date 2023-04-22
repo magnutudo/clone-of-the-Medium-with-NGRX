@@ -7,6 +7,7 @@ import {GetFeedResponseInterface} from "../../types/getFeedResponse.interface";
 import {errorSelector, feedSelector, isLoadingSelector} from "../../store/selectors";
 import {environment} from "../../../../../../environments/environment.development";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import queryString from 'query-string';
 
 @Component({
   selector: "app-feed",
@@ -29,7 +30,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeValues()
-    this.fetchData()
+
     this.initializeListeners()
 
   }
@@ -41,13 +42,23 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.feed$ = this.store.pipe(select(feedSelector))
   }
 
-  fetchData(): void {
-    this.store.dispatch(getFeedAction({url: this.apiUrlProps}))
+  fetchFeed(): void {
+    let offset = this.currentPage * this.limit - this.limit // 3*10 = 30 - 10 = 20
+    const parsedUrl = queryString.parseUrl(this.apiUrlProps)
+    const stringifiedParams = queryString.stringify({
+      limit:this.limit,
+      offset,
+      ...parsedUrl.query
+    })
+    const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`
+    console.log(apiUrlWithParams)
+    this.store.dispatch(getFeedAction({url:apiUrlWithParams}))
   }
 
   initializeListeners(): void {
     this.queryParamsSubscription = this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || 1)
+      this.fetchFeed()
     })
   }
 
