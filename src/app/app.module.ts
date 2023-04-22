@@ -12,6 +12,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {PersistanceService} from "./shared/services/persistance.service";
 import {Authinterceptor} from "./shared/services/authinterceptor.service";
 import {GlobalFeedModule} from "./global/globalFeed.module";
+import {routerReducer, StoreRouterConnectingModule} from "@ngrx/router-store";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {GlobalFeedModule} from "./global/globalFeed.module";
     HttpClientModule,
     EffectsModule.forRoot([]),
     AuthModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({router:routerReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -31,6 +32,7 @@ import {GlobalFeedModule} from "./global/globalFeed.module";
       trace: false,
       traceLimit: 75,
     }),
+    StoreRouterConnectingModule.forRoot(),
     TopBarModule,
     GlobalFeedModule
   ],

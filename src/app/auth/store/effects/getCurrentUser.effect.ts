@@ -14,14 +14,14 @@ import {PersistanceService} from "../../../shared/services/persistance.service";
 
 @Injectable()
 export class GetCurrentUserEffect {
-  constructor(private actions$: Actions, private authService: AuthService,private persistanceService:PersistanceService) {
+  constructor(private actions$: Actions, private authService: AuthService, private persistanceService: PersistanceService) {
   }
 
   getCurrentUser$ = createEffect(() => this.actions$.pipe(
       ofType(getCurrentUserAction),
       switchMap(() => {
         const token = this.persistanceService.get("access-token")
-        if (!token){
+        if (!token) {
           return of(getCurrentUserFailureAction)
         }
         return this.authService.getCurrentUser().pipe(
@@ -33,7 +33,7 @@ export class GetCurrentUserEffect {
           })
         )
       })
-    )
+    ), {dispatch: false}
   )
 
 }
