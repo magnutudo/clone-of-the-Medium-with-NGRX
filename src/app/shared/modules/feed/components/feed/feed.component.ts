@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from "@angular/core";
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from "@angular/core";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../../../types/appState.interface";
 import {getFeedAction} from "../../store/actions/getFeed.action";
@@ -14,7 +14,7 @@ import queryString from 'query-string';
   templateUrl: "./feed.component.html",
   styleUrls: ["./feed.component.scss"]
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   @Input("apiUrl") apiUrlProps: string
 
   isLoading$: Observable<boolean>
@@ -30,7 +30,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeValues()
-
     this.initializeListeners()
 
   }
@@ -44,15 +43,16 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   fetchFeed(): void {
     let offset = this.currentPage * this.limit - this.limit // 3*10 = 30 - 10 = 20
+    console.log(this.apiUrlProps)
     const parsedUrl = queryString.parseUrl(this.apiUrlProps)
     const stringifiedParams = queryString.stringify({
-      limit:this.limit,
+      limit: this.limit,
       offset,
       ...parsedUrl.query
     })
+    console.log("string:", stringifiedParams)
     const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`
-    console.log(apiUrlWithParams)
-    this.store.dispatch(getFeedAction({url:apiUrlWithParams}))
+    this.store.dispatch(getFeedAction({url: apiUrlWithParams}))
   }
 
   initializeListeners(): void {
@@ -64,5 +64,12 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.queryParamsSubscription.unsubscribe()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlChanged = !changes['apiUrlProps'].firstChange && changes['apiUrlProps'].currentValue !== changes['apiUrlProps'].previousValue
+    if (isApiUrlChanged) {
+      this.fetchFeed()
+    }
   }
 }

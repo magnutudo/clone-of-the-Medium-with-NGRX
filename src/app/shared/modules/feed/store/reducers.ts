@@ -1,7 +1,6 @@
 import {FeedStateInterface} from "../types/feedState.interface";
 import {Action, createReducer, on} from "@ngrx/store";
 import {getFeedAction, getFeedFailureAction, getFeedSuccessAction} from "./actions/getFeed.action";
-import {AuthStateInterface} from "../../../../auth/types/authState.interface";
 import {routerNavigationAction} from "@ngrx/router-store";
 
 const initialState:FeedStateInterface = {
