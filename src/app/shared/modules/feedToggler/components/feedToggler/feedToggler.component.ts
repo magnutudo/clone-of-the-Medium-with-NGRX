@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {Observable} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../../../types/appState.interface";
@@ -22,4 +22,5 @@ export class FeedTogglerComponent implements OnInit {
   initializeValues() {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
   }
+
 }
