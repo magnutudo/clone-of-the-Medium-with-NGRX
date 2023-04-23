@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {AppStateInterface} from "../../../../types/appState.interface";
 import {select, Store} from "@ngrx/store";
-import {getFeedAction} from "../../../feed/store/actions/getFeed.action";
 import {getPopularTagsAction} from "../../store/actions/getPopularTags.action";
 import {Observable} from "rxjs";
 import {PopularTagType} from "../../../../types/popularTag.type";
