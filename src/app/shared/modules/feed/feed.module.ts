@@ -5,18 +5,19 @@ import {EffectsModule} from "@ngrx/effects";
 import {GetFeedEffect} from "./store/effects/getFeed.effect";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./store/reducers";
-import {FeedService} from "./services/feed,service";
+import {FeedService} from "./services/feed.service";
 import {RouterModule} from "@angular/router";
 import {ErrorMessageModule} from "../errorMessage/errorMessage.module";
 import {LoadingModule} from "../loading/loading.module";
 import {PaginationModule} from "../pagination/pagination.module";
+import {TagListModule} from "../tagList/tagList.module";
 
 @NgModule({
-  imports: [CommonModule, EffectsModule.forFeature(GetFeedEffect), StoreModule.forFeature("feed", reducers), RouterModule, ErrorMessageModule, LoadingModule, PaginationModule],
-  declarations:[FeedComponent],
-  exports:[FeedComponent],
-  providers:[FeedService]
+  imports: [CommonModule, EffectsModule.forFeature(GetFeedEffect), StoreModule.forFeature("feed", reducers), RouterModule, ErrorMessageModule, LoadingModule, PaginationModule, TagListModule],
+  declarations: [FeedComponent],
+  exports: [FeedComponent],
+  providers: [FeedService]
 })
-export class FeedModule{
+export class FeedModule {
 
 }
