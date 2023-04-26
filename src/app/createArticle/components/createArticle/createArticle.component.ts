@@ -8,8 +8,14 @@ import {BackendErrorsInterface} from "../../../shared/types/backendErrors.interf
   templateUrl: "./createArticle.component.html"
 })
 export class CreateArticleComponent {
-  @Input("initialValues") InitialValuesProps: ArticleInputInterface
-  @Input("isSubmitting") isSubmittingProps: boolean
-  @Input("errors") errorProps: BackendErrorsInterface | null
+  initialValues = {
+    title: "foo",
+    description: "boo",
+    body: "BABA",
+    tagList: ["213",'3213']
+  }
 
+  onSubmit(res: ArticleInputInterface) {
+    console.log("OnSubmit", res)
+  }
 }
