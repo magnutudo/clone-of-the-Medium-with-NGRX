@@ -12,7 +12,7 @@ export class CreateArticleComponent {
     title: "foo",
     description: "boo",
     body: "BABA",
-    tagList: ["213",'3213']
+    tagList: ["213", '3213']
   }
 
   onSubmit(res: ArticleInputInterface) {
