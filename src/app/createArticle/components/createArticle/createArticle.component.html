@@ -1,2 +1,2 @@
-CREATE <br>
-<app-article-form [initialValues]="initialValues" [isSubmitting]="false" (articleSubmit)="onSubmit($event)"></app-article-form>
+<app-article-form [initialValues]="initialValues" [errors]="backendErrors$ | async"
+                  [isSubmitting]="isSubmitting$ | async" (articleSubmit)="onSubmit($event)"></app-article-form>
