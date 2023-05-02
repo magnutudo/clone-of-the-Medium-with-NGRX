@@ -35,6 +35,6 @@ const createArticleReducer = createReducer(
       validationErrors: action.errors
     }))
 )
-export function reducers(state: AuthStateInterface, action: Action) {
+export function reducers(state: CreateArticleStateInterface, action: Action) {
   return createArticleReducer(state, action)
 }

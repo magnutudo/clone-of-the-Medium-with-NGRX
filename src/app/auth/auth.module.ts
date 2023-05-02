@@ -15,10 +15,7 @@ import {PersistanceService} from "../shared/services/persistance.service";
 import {LoginEffect} from "./store/effects/login.effect";
 import {LoginComponent} from "./components/login/login.component";
 import {GetCurrentUserEffect} from "./store/effects/getCurrentUser.effect";
-
-
-
-
+import {UpdateCurrentUserEffect} from "./store/effects/updateCurrentUser.effect";
 
 
 const routes: Routes = [
@@ -27,19 +24,19 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:"login",
-    component:LoginComponent
+    path: "login",
+    component: LoginComponent
   }
 ]
 
 @NgModule({
 
-  imports: [CommonModule,HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect, LoginEffect,GetCurrentUserEffect]), BackendErrorMessagesModule],
+  imports: [CommonModule, HttpClientModule, RouterModule.forChild(routes), ReactiveFormsModule, StoreModule.forFeature("auth", reducers), EffectsModule.forFeature([RegisterEffect, LoginEffect, GetCurrentUserEffect, UpdateCurrentUserEffect]), BackendErrorMessagesModule],
 
   declarations: [
-    RegisterComponent,LoginComponent
+    RegisterComponent, LoginComponent
   ],
-  providers:[AuthService,PersistanceService]
+  providers: [AuthService, PersistanceService]
 })
 export class AuthModule {
 

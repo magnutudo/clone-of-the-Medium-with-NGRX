@@ -1,0 +1,2 @@
+<app-article-form [initialValues]="initialValues" [errors]="backendErrors$ | async"
+                  [isSubmitting]="isSubmitting$ | async" (articleSubmit)="onSubmit($event)"></app-article-form>
