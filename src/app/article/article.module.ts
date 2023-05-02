@@ -12,18 +12,20 @@ import {ErrorMessageModule} from "../shared/modules/errorMessage/errorMessage.mo
 import {LoadingModule} from "../shared/modules/loading/loading.module";
 import {ArticleComponent} from "./components/feed/article.component";
 import {TagListModule} from "../shared/modules/tagList/tagList.module";
+import {ArticleService} from "./services/article.service";
 
-const routes:Routes = [
+const routes: Routes = [
   {
-    path:"articles/:slug",
-    component:ArticleComponent
+    path: "articles/:slug",
+    component: ArticleComponent
   }
 ]
+
 @NgModule({
   imports: [CommonModule, EffectsModule.forFeature(GetArticleEffect), StoreModule.forFeature("article", reducers), RouterModule.forChild(routes), ErrorMessageModule, LoadingModule, TagListModule],
   declarations: [ArticleComponent],
   exports: [],
-  providers: [SharedArticleService]
+  providers: [SharedArticleService, ArticleService]
 })
 export class ArticleModule {
 

@@ -1,5 +1,4 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {registerAction, registerFailureAction, registerSuccessAction} from "../actions/register.action";
 import {catchError, map, of, switchMap, tap} from "rxjs";
 import {Injectable} from "@angular/core";
 import {AuthService} from "../../services/auth.service";
