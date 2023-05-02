@@ -6,12 +6,16 @@ import {Observable} from "rxjs";
 import {isSubmittingSelector, validationErrorsSelector} from "../../store/selectors";
 import {AppStateInterface} from "../../../shared/types/appState.interface";
 
+import {AuthService} from "../../services/auth.service";
 
+import {CurrentUserInterface} from "../../../shared/types/currentUser.interface";
+import {RegisterRequestInterface} from "../../types/registerRequest.interface";
 
 import {BackendErrorsInterface} from "../../../shared/types/backendErrors.interface";
 
 
 import {RegisterRequestInterface} from "../../types/registerRequest.interface";
+
 
 @Component({
   selector: 'app-register',
