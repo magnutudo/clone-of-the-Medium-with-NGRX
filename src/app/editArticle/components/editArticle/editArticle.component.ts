@@ -9,10 +9,10 @@ import {isSubmittingSelector, validationErrorsSelector} from "../../store/select
 import {updateArticleAction} from "../../store/actions/updateArticle.action";
 
 @Component({
-  selector: "app-create-article",
-  templateUrl: "./createArticle.component.html"
+  selector: "app-edit-article",
+  templateUrl: "./editArticle.component.html"
 })
-export class CreateArticleComponent implements OnInit {
+export class EditArticleComponent implements OnInit {
   initialValues: ArticleInputInterface = {
     title: "",
     description: "",
@@ -26,7 +26,7 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit(res: ArticleInputInterface) {
-    this.store.dispatch(updateArticleAction({articleInput: res}))
+    this.store.dispatch(updateArticleAction({articleInput: res, slug: "2"}))
   }
 
   ngOnInit(): void {

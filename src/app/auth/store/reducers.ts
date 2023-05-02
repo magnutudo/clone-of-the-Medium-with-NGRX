@@ -9,6 +9,7 @@ import {
 } from "./actions/getCurrentsUser.action";
 import {updateArticleSuccessAction} from "../../editArticle/store/actions/updateArticle.action";
 import {updateCurrentUserSuccessAction} from "./actions/updateCurrentUser.action";
+import {logoutAction} from "./actions/sync.action";
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
@@ -87,6 +88,12 @@ const authReducer = createReducer(
     (state, action): AuthStateInterface => ({
       ...state,
       currentUser: action.currentUser
+    })
+  ),
+  on(logoutAction,
+    (): AuthStateInterface => ({
+      ...initialState,
+      isLoggedIn: false
     })
   )
 )
