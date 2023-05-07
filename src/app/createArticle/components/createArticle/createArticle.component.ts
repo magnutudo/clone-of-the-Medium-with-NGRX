@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {ArticleInterface} from "../../../shared/types/article.interface";
+import {Component, OnInit} from "@angular/core";
 import {ArticleInputInterface} from "../../../shared/types/articleInput.interface";
 import {BackendErrorsInterface} from "../../../shared/types/backendErrors.interface";
 import {Observable} from "rxjs";
