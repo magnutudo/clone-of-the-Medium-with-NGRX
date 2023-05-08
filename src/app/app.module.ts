@@ -18,6 +18,7 @@ import {TagFeedModule} from "./tagFeed/tagFeed.module";
 import {ArticleModule} from "./article/article.module";
 import {CreateArticleModule} from "./createArticle/createArticle.module";
 import {SettingsModule} from "./settings/settings.module";
+import {UserProfileModule} from "./userProfile/userProfile.module";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {SettingsModule} from "./settings/settings.module";
     TagFeedModule,
     CreateArticleModule,
     ArticleModule,
-    SettingsModule
+    SettingsModule,
+    UserProfileModule
   ],
   providers: [PersistanceService,
     {
